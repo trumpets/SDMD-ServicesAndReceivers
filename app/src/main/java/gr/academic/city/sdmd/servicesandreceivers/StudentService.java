@@ -36,8 +36,8 @@ public class StudentService extends IntentService {
     public static final String EXTRA_CREATE_STUDENT_RESULT = "create.student.result";
     public static final String EXTRA_STUDENTS_RESULT = "students.result";
 
-    private static final String GET_STUDENTS_URL = "http://students-sdmdcity.rhcloud.com/rest/students";
-    private static final String CREATE_STUDENTS_URL = "http://students-sdmdcity.rhcloud.com/rest/students";
+    private static final String GET_STUDENTS_URL = "https://city-201617.appspot.com/_ah/api/students/v1/student";
+    private static final String CREATE_STUDENTS_URL = "https://city-201617.appspot.com/_ah/api/students/v1/student";
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.

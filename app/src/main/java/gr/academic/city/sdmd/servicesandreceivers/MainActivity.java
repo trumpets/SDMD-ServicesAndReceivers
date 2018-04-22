@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private BroadcastReceiver getAllStudentsResultBroadcastReceiver = new BroadcastReceiver() {
@@ -20,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String studentResults = intent.getStringExtra(StudentService.EXTRA_STUDENTS_RESULT);
 
-            Student[] students = new Gson().fromJson(studentResults, Student[].class);
+            List<Student> students = new Gson().fromJson(studentResults, ListResponse.class).getStudents();
 
             String result = "";
 
-            for (int i = 0; i < students.length; i++) {
-                Student student = students[i];
+            for (int i = 0; i < students.size(); i++) {
+                Student student = students.get(i);
                 result += student.getFirstName() + "\t" + student.getLastName() + "\t" + student.getAge() + "\n";
             }
 
@@ -51,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_insert).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            String firstName = ((TextView) findViewById(R.id.txt_first_name)).getText().toString();
-            String lastName = ((TextView) findViewById(R.id.txt_last_name)).getText().toString();
-            String age = ((TextView) findViewById(R.id.txt_age)).getText().toString();
+                String firstName = ((TextView) findViewById(R.id.txt_first_name)).getText().toString();
+                String lastName = ((TextView) findViewById(R.id.txt_last_name)).getText().toString();
+                String age = ((TextView) findViewById(R.id.txt_age)).getText().toString();
 
-            insertStudent(firstName, lastName, age);
+                insertStudent(firstName, lastName, age);
             }
         });
 
