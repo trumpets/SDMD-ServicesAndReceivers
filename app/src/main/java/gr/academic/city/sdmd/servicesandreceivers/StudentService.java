@@ -2,9 +2,7 @@ package gr.academic.city.sdmd.servicesandreceivers;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -15,6 +13,8 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * Created by trumpets on 3/14/16.
