@@ -14,8 +14,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 /**
  * Created by trumpets on 3/14/16.
  */
@@ -103,7 +101,7 @@ public class StudentService extends IntentService {
             Intent resultIntent = new Intent(ACTION_CREATE_STUDENT_RESULT);
             resultIntent.putExtra(EXTRA_CREATE_STUDENT_RESULT, "Created student. Server responded with status " + response);
 
-            LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+            sendBroadcast(resultIntent);
 
         } catch (Exception e) {
             Log.e(LOG_TAG, "Exception creating students", e);
@@ -134,7 +132,7 @@ public class StudentService extends IntentService {
             Intent resultIntent = new Intent(ACTION_GET_STUDENTS_RESULT);
             resultIntent.putExtra(EXTRA_STUDENTS_RESULT, result);
 
-            LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+            sendBroadcast(resultIntent);
 
             // Makes sure that the InputStream is closed after the app is
             // finished using it.

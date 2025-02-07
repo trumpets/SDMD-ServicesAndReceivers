@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,23 +73,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
-
         IntentFilter getStudentsResultIntentFilter = new IntentFilter(StudentService.ACTION_GET_STUDENTS_RESULT);
-        broadcastManager.registerReceiver(getAllStudentsResultBroadcastReceiver, getStudentsResultIntentFilter);
+        registerReceiver(getAllStudentsResultBroadcastReceiver, getStudentsResultIntentFilter);
 
         IntentFilter createStudentResultIntentFilter = new IntentFilter(StudentService.ACTION_CREATE_STUDENT_RESULT);
-        broadcastManager.registerReceiver(createStudentResultBroadcastReceiver, createStudentResultIntentFilter);
+        registerReceiver(createStudentResultBroadcastReceiver, createStudentResultIntentFilter);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
-
-        broadcastManager.unregisterReceiver(getAllStudentsResultBroadcastReceiver);
-        broadcastManager.unregisterReceiver(createStudentResultBroadcastReceiver);
+        unregisterReceiver(getAllStudentsResultBroadcastReceiver);
+        unregisterReceiver(createStudentResultBroadcastReceiver);
     }
 
     private void insertStudent(String firstName, String lastName, String age) {
